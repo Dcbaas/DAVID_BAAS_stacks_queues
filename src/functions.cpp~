@@ -1,0 +1,50 @@
+#include "functions.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+
+  bool balancedSymbols(std::string input){
+	std::stack<char, std::vector<char> > input_stack;
+	for(auto input_it = input.begin(); input_it != input.end(); input_it++){
+		//Add a starting parenthese to the stack (, [, or {.
+		if(*input_it == '(' || *input_it == '[' || *input_it == '{')
+			input_stack.push(*input_it);
+		//Check an ending parenthese ), ], or }.
+		switch(*input_it){
+			case ')':
+				if(input_stack.empty())
+					return false;
+				else if(input_stack.top() == '(')
+					input_stack.pop();
+				else
+					return false;
+			case ']':
+				if(input_stack.empty())  	
+                         		 return false;
+				 else if(input_stack.top() == '[')
+					input_stack.pop();
+				else
+					return false;
+			case '}':
+				if(input_stack.empty())
+					return false;
+				else if(input_stack.top() == '{')
+					input_stack.pop();
+				else
+					return false;
+		}
+	}
+
+	if(input_stack.empty())
+		return true;
+	
+	return false;
+  }
+
+  std::string iToP(std::string input){
+	return "String";
+
+  }  
+
+ 
