@@ -84,9 +84,51 @@
 	
 	return 0;
   }
-
+/***********************************************************************
+ * The iToP converts an infix expression to a reverse Polish expression.
+ *
+ *
+ **********************************************************************/
   std::string iToP(std::string input){
-	
+	std::string output;
+	std::stack<char, std::vector<char> > input_stack;
+
+	//read the entire expression 
+	for(auto input_it = input.begin(); input_it != input.end(); input_it++){
+		switch(*input_it){
+			case '+':
+				if(input_stack.empty())
+					input_stack.push(*input_it);
+				else{
+		
+				}
+				break;
+			case '-':	
+				input_stack.push(*input_it);
+				break;
+			case '/':
+				input_stack.push(*input_it);
+				break;
+			case '*':
+				input_stack.push(*input_it);
+				break;
+			case '(':
+//				if(!input_stack.empty())//If this isn't the start of the expression.
+//					output.append(1, input_stack.top());
+				input_stack.push(*input_it);
+				break;
+			case ')':
+				while(input_stack.top() != '('){
+					output.append(1, input_stack.top());
+					input_stack.pop();
+				}
+				input_stack.pop(); //Pop off the '('.
+ 				break;
+			default:
+				output.append(1, *input_it);
+				break;		
+		}
+	}
 
 	return "String";
 
