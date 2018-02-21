@@ -100,17 +100,48 @@
 				if(input_stack.empty())
 					input_stack.push(*input_it);
 				else{
-		
+					while(!input_stack.empty() && input_stack.top() != '('){
+						output.append(1, input_stack.top());
+						input_stack.pop();
+					}
+					input_stack.push(*input_it);
+						
 				}
 				break;
 			case '-':	
-				input_stack.push(*input_it);
-				break;
+				if(input_stack.empty())
+					input_stack.push(*input_it); 
+				else{
+					while(!input_stack.empty() && input_stack.top() != '('){
+						output.append(1, input_stack.top());
+						input_stack.pop();
+					}
+					input_stack.push(*input_it);
+				}
+                                break;
 			case '/':
-				input_stack.push(*input_it);
+				if(input_stack.empty())
+					input_stack.push(*input_it);
+				else{
+					while(!input_stack.empty() && input_stack.top() != '(' &&
+					 input_stack.top() != '+' && input_stack.top() != '-'){
+						output.append(1, input_stack.top());
+						input_stack.pop();
+					}
+					input_stack.push(*input_it);
+				}	
 				break;
 			case '*':
-				input_stack.push(*input_it);
+				if(input_stack.empty())
+					input_stack.push(*input_it);
+				else{
+					while(!input_stack.empty() && input_stack.top() != '(' &&
+						input_stack.top() != '+' && input_stack.top() != '-'){
+						output.append(1, input_stack.top());
+						input_stack.pop();
+					}
+					input_stack.push(*input_it);
+				}	
 				break;
 			case '(':
 //				if(!input_stack.empty())//If this isn't the start of the expression.
@@ -129,8 +160,12 @@
 				break;		
 		}
 	}
+	
+	while(!input_stack.empty()){
+		output.append(1,input_stack.top());
+		input_stack.pop();
+		}
+	return output;
 
-	return "String";
-
-  }  
+ }  
  

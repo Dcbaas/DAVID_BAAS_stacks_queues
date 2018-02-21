@@ -30,3 +30,11 @@ TEST_CASE("Test a file", "[inner]"){
 	CHECK_FALSE(input == "Test" );
 	CHECK(balancedSymbols(input) == true);
 }
+
+TEST_CASE("Test iToP", "[inner]"){
+	std::string input = "a+b*c+(d*e+f)*g";
+
+	std::string output = iToP(input);
+	CHECK(output == "abc*+de*f+g*+");
+
+}
