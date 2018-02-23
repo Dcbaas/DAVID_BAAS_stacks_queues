@@ -3,6 +3,7 @@
 #include "functions.h"
 #include <string>
 #include <fstream>
+#include <iostream>
 
 TEST_CASE("Test BalancedSymbols", "[inner]"){
 	std::string input = "()()(abc){}";
@@ -37,4 +38,11 @@ TEST_CASE("Test iToP", "[inner]"){
 	std::string output = iToP(input);
 	CHECK(output == "abc*+de*f+g*+");
 
+}
+
+TEST_CASE("Test iTOP", "[inner]"){
+  std::string input = "a/b+c+t";
+
+  std::string output = iToP(input);
+  std::cout << output << std::endl;
 }
